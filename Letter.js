@@ -10,17 +10,16 @@ var Letter = function(lettr) {
   // property/boolean if the letter can be shown
   this.guessed = false;
   // function (method)
-  this.checkLetter = function() {
+  this.letterDisplay = function() {
     if(this.letter == ' '){ /*renders a blank as it is*/
       //makes sure that when the function checks if the word is found doesn't read the blank as false.
       this.guessed = true;
       return '  ';
-    }if(this.guessed === false){ /*if it doesn't guessed, it returns a ' _ '*/
+    }if(this.guessed === false){ /*if it isn't guessed, it returns a ' _ '*/
       return ' _ ';
-    } else{ /*otherwise it just guesseds as itself*/
+    } else{ /*otherwise it just displays as itself*/
       return this.letter;
     }
-
   };
 };
 
