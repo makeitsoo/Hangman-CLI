@@ -4,9 +4,9 @@
 
 
 // CONSTRUCTOR FUNCTION
-var Letter = function(lettr) {
+var Letter = function(ltr) {
   // property to store the letter
-  this.letter = lettr;
+  this.letter = ltr;
   // property/boolean if the letter can be shown
   this.guessed = false;
   // function (method)

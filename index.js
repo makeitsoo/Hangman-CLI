@@ -66,8 +66,7 @@ var hangman = {
   },
   keepPromptingUser : function(){
     var that = this;
-    console.log("keepPromptingUser Function called!")
-    // console.log(that);
+    // console.log(this);
     //asks player for a letter
     inquirer.prompt([{
       name: "chosenLtr",
@@ -80,9 +79,9 @@ var hangman = {
           return false;
         }
       }
-    }]).then(function(lettr) {
+    }]).then(function(ltr) {
       //toUpperCase because words in word bank are all caps
-      var letterReturned = (lettr.chosenLtr).toUpperCase();
+      var letterReturned = (ltr.chosenLtr).toUpperCase();
       //adds to the guessedLetters array if it isn't already there
       var guessedAlready = false;
         for(var i = 0; i<that.guessedLetters.length; i++){
@@ -123,15 +122,23 @@ var hangman = {
                 console.log("Letters guessed: " + that.guessedLetters);
               }
           }
-          if(that.guessesRemaining > 0 && that.currentWord.wordFound === false) {
+          if(that.guessesRemaining > 0 && that.currentWord.wordGuessed === false) {
+            console.log("line before: keepPromptingUser Function called!");
+            console.log("------------------------");
             that.keepPromptingUser();
+            console.log("line after: keepPromptingUser Function called!");
+            console.log("------------------------");
           }else if(that.guessesRemaining === 0){
             console.log('Game over!');
             console.log('The word you were guessing was: ' + that.currentWord.word);
           }
         } else{
-            console.log("You've guessed that letter already. Try again.")
+            console.log("You've guessed that letter already. Try again.");
+            console.log("line before: keepPromptingUser Function called!");
+            // console.log("------------------------");
             that.keepPromptingUser();
+            console.log("line after: keepPromptingUser Function called!");
+            // console.log("------------------------");
           }
     });
   }
