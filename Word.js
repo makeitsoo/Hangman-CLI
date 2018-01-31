@@ -44,7 +44,7 @@ var Word = function(werd) {
 	// store word as string
 	var that = this;
 	this.word = werd;
-	console.log(this.word);
+	// console.log(this.word);
 	this.letterArray = [];
 	this.wordGuessed = false;
 	// take new letter and push into array representing underlying word
@@ -69,7 +69,7 @@ var Word = function(werd) {
 	//iterates through each letter to see if it matches the guessed letter
 		this.letterArray.forEach(function(lttr){
 	  		if(lttr.letter === guessedLetter){
-	    		lttr.appear = true;
+	    		lttr.guessed = true;
 	    		whatToReturn++;
 	  		}
 		})
