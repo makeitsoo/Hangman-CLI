@@ -19,7 +19,7 @@ var hangman = {
   currentWord: null,
   //asks user if they are ready to play
   startGame: function() {
-    var that = this;
+    var here = this;
     //clears guessedLetters before a new game starts if it's not already empty.
     if(this.guessedLetters.length > 0){
       this.guessedLetters = [];
@@ -31,7 +31,7 @@ var hangman = {
       message: "Would you like to play Hangman?"
     }]).then(function(answer) {
       if(answer.play){
-        that.newGame();
+        here.newGame();
       } else{
         console.log("Chicken");
       }
@@ -59,7 +59,7 @@ var hangman = {
     this.guessesRemaining = 10;
   },
   keepPromptingUser : function(){
-    var that = this;
+    var here = this;
     // console.log(this);
     //asks player for a letter
     inquirer.prompt([{
@@ -78,62 +78,62 @@ var hangman = {
       var letterReturned = (ltr.chosenLtr).toUpperCase();
       //adds to the guessedLetters array if it isn't already there
       var guessedAlready = false;
-        for(var i = 0; i<that.guessedLetters.length; i++){
-          if(letterReturned === that.guessedLetters[i]){
+        for(var i = 0; i<here.guessedLetters.length; i++){
+          if(letterReturned === here.guessedLetters[i]){
             guessedAlready = true;
           }
         }
         //if the letter wasn't guessed already run through entire function, else reprompt user
         if(guessedAlready === false){
-          that.guessedLetters.push(letterReturned);
+          here.guessedLetters.push(letterReturned);
 
-          var found = that.currentWord.checkLetterBeGuessed(letterReturned);
+          var found = here.currentWord.checkLetterBeGuessed(letterReturned);
           //if none were found tell user they were wrong
           if(found === 0){
-            that.guessesRemaining--;
-            that.display++;
-            console.log(hangManDisplay[(that.display)-1]);
+            here.guessesRemaining--;
+            here.display++;
+            console.log(hangManDisplay[(here.display)-1]);
             console.log("No, sorry - there are no " + letterReturned + "'s in this word. Try again!");
             console.log('\n---------------------');
             console.log('\n');
-            console.log(that.currentWord.wordDisplay());
+            console.log(here.currentWord.wordDisplay());
             console.log('\n---------------------');
-            console.log('Guesses remaining: ' + that.guessesRemaining);
-            console.log("Letters guessed: " + that.guessedLetters);
+            console.log('Guesses remaining: ' + here.guessesRemaining);
+            console.log("Letters guessed: " + here.guessedLetters);
           } else{
           	console.log('\n---------------------');
             console.log("Yes! There's atleast one " + letterReturned + "!");
           	console.log('\n');
               //checks to see if user won
-              if(that.currentWord.checkWordBeGuessed() === true){
+              if(here.currentWord.checkWordBeGuessed() === true){
               	// if so, log the word by calling function
-                console.log(that.currentWord.wordDisplay());
+                console.log(here.currentWord.wordDisplay());
                 console.log("************************************************")
                 console.log("Congratulations! You won! Double'r nothin'? ");
  			    console.log('\n************************************************');
-                // that.startGame();
+                // here.startGame();
               } else{
               	// display word (and _ as currently guessed)
-                console.log(that.currentWord.wordDisplay());
+                console.log(here.currentWord.wordDisplay());
                 console.log('\n---------------------');
                 // display number guesses remaining
-                console.log('Guesses remaining: ' + that.guessesRemaining);
+                console.log('Guesses remaining: ' + here.guessesRemaining);
                 // display letters guessed by user
-                console.log("Letters guessed: " + that.guessedLetters);
+                console.log("Letters guessed: " + here.guessedLetters);
               }
           }
-          if(that.guessesRemaining > 0 && that.currentWord.wordGuessed === false) {
-            that.keepPromptingUser();
+          if(here.guessesRemaining > 0 && here.currentWord.wordGuessed === false) {
+            here.keepPromptingUser();
 
-          }else if(that.guessesRemaining === 0){
+          }else if(here.guessesRemaining === 0){
           	console.log("************************************************");
             console.log('Game over! Sorry, you lose...');
-            console.log('The correct word was: ' + that.currentWord.word);
+            console.log('The correct word was: ' + here.currentWord.word);
           	console.log("************************************************");
           }
         } else{
-            console.log("You've already guessed that letter. You should really work on your short term memory. Pick another letter!");
-            that.keepPromptingUser();
+            console.log("You've already guessed here letter. You should really work on your short term memory. Pick another letter!");
+            here.keepPromptingUser();
           }
     });
   }

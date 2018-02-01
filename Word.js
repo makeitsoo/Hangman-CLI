@@ -3,7 +3,7 @@ var Letter = require("./Letter");
 
 var Word = function(werd) {
 	// store word as string
-	var that = this;
+	var here = this;
 	this.word = werd;
 	// console.log(this.word);
 	this.letterArray = [];
@@ -16,7 +16,7 @@ var Word = function(werd) {
 		}
 
 	}
-	// method that checks each letter in word to see if all letters have been guessed
+	// method here checks each letter in word to see if all letters have been guessed
 	this.checkWordBeGuessed = function() {
 		if(this.letterArray.every(function(lttr) {
 			return lttr.guessed === true;
@@ -40,7 +40,7 @@ var Word = function(werd) {
 	this.wordDisplay = function() {
 		var display = '';
 		//render the word based on if letters are found or not
-		that.letterArray.forEach(function(lttr){
+		here.letterArray.forEach(function(lttr){
 			var currentLetter = lttr.letterDisplay();
 			display+= currentLetter;
 		});
