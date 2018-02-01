@@ -41,7 +41,7 @@ var hangman = {
     if(this.guessesRemaining === 10) {
       console.log('\n');
       console.log("Great! I'll give you one HINT: think 90s movies");
-      console.log('\n*******************************************');
+      console.log('\n----------------------------------------------');
       console.log('\n');
       //generates random number based on the word_List
       var randNum = Math.floor(Math.random()*this.word_List.length);
@@ -90,30 +90,32 @@ var hangman = {
           var found = that.currentWord.checkLetterBeGuessed(letterReturned);
           //if none were found tell user they were wrong
           if(found === 0){
-            console.log("No, sorry - there are no " + letterReturned + "'s in this word. Try again!");
             that.guessesRemaining--;
             that.display++;
             console.log(hangManDisplay[(that.display)-1]);
-            console.log('\n*******************');
+            console.log("No, sorry - there are no " + letterReturned + "'s in this word. Try again!");
+            console.log('\n---------------------');
+            console.log('\n');
             console.log(that.currentWord.wordDisplay());
-            console.log('\n*******************');
+            console.log('\n---------------------');
             console.log('Guesses remaining: ' + that.guessesRemaining);
             console.log("Letters guessed: " + that.guessedLetters);
           } else{
-          	console.log('\n*******************');
+          	console.log('\n---------------------');
             console.log("Yes! There's atleast one " + letterReturned + "!");
           	console.log('\n');
               //checks to see if user won
               if(that.currentWord.checkWordBeGuessed() === true){
+              	// if so, log the word by calling function
                 console.log(that.currentWord.wordDisplay());
-                console.log("Congratulations! You won!! If you think you're so smart see if you can win again. ");
- 			    console.log('\n*******************************************');
- 			    console.log('*******************************************');
+                console.log("************************************************")
+                console.log("Congratulations! You won! Double'r nothin'? ");
+ 			    console.log('\n************************************************');
                 // that.startGame();
               } else{
               	// display word (and _ as currently guessed)
                 console.log(that.currentWord.wordDisplay());
-                console.log('\n*******************');
+                console.log('\n---------------------');
                 // display number guesses remaining
                 console.log('Guesses remaining: ' + that.guessesRemaining);
                 // display letters guessed by user
@@ -124,8 +126,10 @@ var hangman = {
             that.keepPromptingUser();
 
           }else if(that.guessesRemaining === 0){
+          	console.log("************************************************");
             console.log('Game over! Sorry, you lose...');
             console.log('The correct word was: ' + that.currentWord.word);
+          	console.log("************************************************");
           }
         } else{
             console.log("You've already guessed that letter. You should really work on your short term memory. Pick another letter!");
