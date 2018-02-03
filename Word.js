@@ -1,3 +1,4 @@
+// require Letter.js so can use Letter constructor
 var Letter = require("./Letter");
 
 // constructor function for checking letters guessed by user with randomly generated word
@@ -14,7 +15,6 @@ var Word = function(werd) {
 			var newLetter = new Letter(this.word[i]);
 			this.letterArray.push(newLetter);
 		}
-
 	}
 	// method here checks each letter in word to see if all letters have been guessed
 	this.checkWordBeGuessed = function() {
@@ -28,7 +28,7 @@ var Word = function(werd) {
 	// methods takes user letter guess and checks against letters in word for match
 	this.checkLetterBeGuessed = function(guessedLetter) {
 		var whatToReturn = 0;
-	//iterates through each letter to see if it matches the guessed letter
+		//iterates through each letter to see if it matches the guessed letter
 		this.letterArray.forEach(function(lttr){
 	  		if(lttr.letter === guessedLetter){
 	    		lttr.guessed = true;
@@ -37,7 +37,7 @@ var Word = function(werd) {
 		})
 		//if guessLetter matches Letter property, the letter object should be shown
 		return whatToReturn;
-	};
+	}
 	// method displays the letters and underscores in console
 	this.wordDisplay = function() {
 		var display = '';
@@ -47,7 +47,7 @@ var Word = function(werd) {
 			display+= currentLetter;
 		});
 		return display;
-	};
+	}
 }
 
 // exports this Word constructor function so can be used in index.js file

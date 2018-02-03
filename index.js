@@ -1,6 +1,6 @@
 // * **index.js**: This file contains the logic for running the game, which depends on `Word.js` and 'wordList.js' files. It will randomly select a word and uses the `Word` constructor to store it. Prompts the user for each guess and keeps track of the user's remaining guesses. 
 
-// wrap everything in function begin 
+// wrap everything in function begin()
 function begin(){
 	//require inquirer
 	var inquirer = require('inquirer');
@@ -75,7 +75,7 @@ function begin(){
 	      		type: "input",
 	      		message: "Choose a letter:"
 	    	}]).then(function(ltr) {
-	      		// apply toUpperCase to callback because words in wordList are all caps
+	      		// apply toUpperCase to ltr callback because words in wordList are all caps
 	      		var letterReturned = (ltr.chosenLtr).toUpperCase();
 	      		//adds to the guessedLetters array if it isn't already there
 	      		var guessedAlready = false;
@@ -84,7 +84,8 @@ function begin(){
 	            		guessedAlready = true;
 	          		}
 	        	}
-	        	//if letter wasn't guessed already run through entire function, else reprompt user
+	        	//if letter hasn't been guessed, then run through whole function  
+	        	// else re-prompt user
 	        	if(guessedAlready === false){
 	          		here.guessedLetters.push(letterReturned);
 	          		// var to store letter if it is a match in current word - (calls method checkLetterBeGuessed in Word.js file and passes user selected letter)
@@ -101,8 +102,8 @@ function begin(){
 	            		console.log('\n');
 	            		console.log(here.currentWord.wordDisplay());
 	            		console.log('\n---------------------');
-	            		console.log('Guesses remaining: ' + here.guessesRemaining);
-	            		console.log("Letters guessed: " + here.guessedLetters);
+	            		console.log('Remaining guesses: ' + here.guessesRemaining);
+	            		console.log("Already guessed: " + here.guessedLetters);
 	          		} else{
 	          			console.log('\n---------------------');
 	            		console.log("Yes! There's atleast one " + letterReturned + "!");
@@ -119,9 +120,9 @@ function begin(){
 	                		console.log(here.currentWord.wordDisplay());
 	                		console.log('\n---------------------');
 	                		// display number guesses remaining
-	                		console.log('Guesses remaining: ' + here.guessesRemaining);
+	                		console.log('Remaining guesses: ' + here.guessesRemaining);
 	                		// display letters guessed by user
-	                		console.log("Letters guessed: " + here.guessedLetters);
+	                		console.log("Already guessed: " + here.guessedLetters);
 	              		}
 	          		}
 	          		if(here.guessesRemaining > 0 && here.currentWord.wordGuessed === false) {
